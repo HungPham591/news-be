@@ -1,19 +1,16 @@
 package com.news.news;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
-import org.springframework.boot.web.server.WebServer;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 @SpringBootApplication
-@EntityScan( basePackages = {"com.news.news"} )
+@EnableJpaRepositories(basePackages = "com.news.news.entity")
 public class NewsApplication implements CommandLineRunner {
 
 	@Value("${server.port}")
