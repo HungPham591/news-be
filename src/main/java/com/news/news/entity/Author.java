@@ -18,4 +18,5 @@ public class Author extends BaseEntity<Author> {
     private Date birthdate;
     private Gender gender;
     private String status;
+
 }

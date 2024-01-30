@@ -11,4 +11,5 @@ import javax.persistence.Table;
 public class News extends BaseEntity<News> {
     private String title;
     private String content;
+
 }

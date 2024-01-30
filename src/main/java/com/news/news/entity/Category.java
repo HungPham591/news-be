@@ -11,4 +11,5 @@ import javax.persistence.Table;
 public class Category extends BaseEntity<Category> {
     private String name;
     private String description;
+
 }

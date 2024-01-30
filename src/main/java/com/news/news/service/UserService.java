@@ -31,4 +31,5 @@ public class UserService extends BaseService {
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
+
 }

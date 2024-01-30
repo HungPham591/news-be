@@ -11,4 +11,5 @@ public class AdminController extends BaseController {
     public void logout() {
 
     }
+
 }

@@ -14,4 +14,5 @@ public class BaseEntity<U> extends AuditEntity<U> {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id = 0L;
+
 }
