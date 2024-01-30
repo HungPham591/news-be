@@ -35,3 +35,10 @@ services:
     environment:
       PMA_HOST: mysql-db
       MYSQL_ROOT_PASSWORD: 050999
+  flyway:
+    image: flyway/flyway
+    command: -url=jdbc:mysql://mysql-db:3306/news?allowPublicKeyRetrieval=true&useSSL=false -schemas=news -user=root -password=050999 -connectRetries=60 migrate
+    volumes:
+      - .:/flyway/sql
+    depends_on:
+      - mysql-db

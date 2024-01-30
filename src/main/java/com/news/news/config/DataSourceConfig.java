@@ -1,9 +1,11 @@
 package com.news.news.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -12,6 +14,8 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@EnableJpaRepositories("com.news.news.*")
+@EntityScan("com.news.news.*")
 public class DataSourceConfig {
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
@@ -27,7 +31,7 @@ public class DataSourceConfig {
     private String hibernateShowSql;
     @Value("${spring.jpa.properties.hibernate.current_session_context_class}")
     private String currentSessionContextClass;
-    private String entityPackagePath = "{com.news.news.entity}";
+    private String[] entityPackagePath = new String[]{"com.news.news"};
 
     @Bean
     public DataSource dataSource() {
@@ -39,7 +43,7 @@ public class DataSourceConfig {
         return dataSourceBuilder.build();
     }
 
-    @Bean
+    @Bean(name = "entityManagerFactory")
     public LocalSessionFactoryBean sessionFactory() throws Exception {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 
@@ -50,7 +54,7 @@ public class DataSourceConfig {
         return sessionFactory;
     }
 
-    private final Properties hibernateProperties() {
+    private Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
         hibernateProperties.put("hibernate.dialect", hibernateDialect);
         hibernateProperties.put("hibernate.show_sql", hibernateShowSql);

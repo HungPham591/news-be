@@ -35,7 +35,7 @@ public class AuditEntity<U> {
             columnDefinition = "varchar(255) default 'System'")
     @CreatedBy
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private U createdBy;
+    private String createdBy;
 
     @Column(name = "updated_at", columnDefinition = "timestamp default current_timestamp")
     @LastModifiedDate
@@ -45,7 +45,7 @@ public class AuditEntity<U> {
     @Column(name = "updated_by", columnDefinition = "varchar(255) default 'System'")
     @LastModifiedBy
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private U updatedBy;
+    private String updatedBy;
 
     @Column(name = "deleted_at", nullable = true)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)

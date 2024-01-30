@@ -1,6 +1,6 @@
 package com.news.news.service;
 
-import com.news.news.entity.User;
+import com.news.news.entity.UserAccount;
 import com.news.news.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,19 +12,19 @@ public class UserService extends BaseService {
     @Autowired
     private UserRepository userRepository;
 
-    public User getById(Long id) {
+    public UserAccount getById(Long id) {
         return userRepository.getOne(id);
     }
 
-    public List<User> getList() {
+    public List<UserAccount> getList() {
         return userRepository.findAll();
     }
 
-    public User create(User user) {
+    public UserAccount create(UserAccount user) {
         return userRepository.save(user);
     }
 
-    public User update(User user) {
+    public UserAccount update(UserAccount user) {
         return userRepository.save(user);
     }
 
