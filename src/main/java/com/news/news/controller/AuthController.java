@@ -1,18 +1,32 @@
 package com.news.news.controller;
 
-import org.springframework.stereotype.Controller;
+import com.news.news.common.annotation.ApiPrefix;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@ApiPrefix
+@RequestMapping("/v1/auth/*")
 public class AuthController extends BaseController {
+    @PostMapping("/login")
     public void login() {
 
     }
-
+    @PostMapping("/logout")
     public void logout() {
 
     }
+    @PostMapping("/sign-up")
+    public void signUp() {
 
-    public void signIn() {
+    }
+    @PostMapping("/refresh")
+    public void refresh(){
+
+    }
+    @PostMapping("/reset-password")
+    public void resetPassword(){
 
     }
 }

@@ -27,7 +27,6 @@ public class AdminController extends BaseController<AdminController> {
 
     @GetMapping(value = "/")
     public List<Admin> getList() {
-        logger.info("===================================================================================================");
         return adminService.getList();
     }
 
