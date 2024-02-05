@@ -9,8 +9,8 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "USER")
-public class User extends BaseEntity<User> {
+@Table(name = "USER_ACCOUNT")
+public class UserAccount extends BaseEntity<UserAccount> {
     private String email;
     private String phone;
     private String name;
