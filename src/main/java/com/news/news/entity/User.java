@@ -1,6 +1,6 @@
 package com.news.news.entity;
 
-import com.news.news.commons.enums.Gender;
+import com.news.news.common.enums.Gender;
 import lombok.Data;
 
 import javax.persistence.Entity;

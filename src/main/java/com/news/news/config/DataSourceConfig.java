@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -12,6 +13,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@EnableJpaRepositories(basePackages = {"com.news.news.repository"})
 public class DataSourceConfig {
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
@@ -27,7 +29,7 @@ public class DataSourceConfig {
     private String hibernateShowSql;
     @Value("${spring.jpa.properties.hibernate.current_session_context_class}")
     private String currentSessionContextClass;
-    private String entityPackagePath = "{com.news.news.entity}";
+    private String entityPackagePath = "com.news.news.entity";
 
     @Bean
     public DataSource dataSource() {
@@ -39,7 +41,7 @@ public class DataSourceConfig {
         return dataSourceBuilder.build();
     }
 
-    @Bean
+    @Bean(name="entityManagerFactory")
     public LocalSessionFactoryBean sessionFactory() throws Exception {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 

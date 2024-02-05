@@ -1,4 +1,4 @@
-package com.news.news.dto;
+package com.news.news.dto.response;
 
 import lombok.Data;
 

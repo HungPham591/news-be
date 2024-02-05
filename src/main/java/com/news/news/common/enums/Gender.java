@@ -1,4 +1,4 @@
-package com.news.news.commons.enums;
+package com.news.news.common.enums;
 
 public enum Gender {
     MALE,

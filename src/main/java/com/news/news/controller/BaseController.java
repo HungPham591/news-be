@@ -1,6 +1,6 @@
 package com.news.news.controller;
 
-import com.news.news.dto.ResponseModel;
+import com.news.news.dto.response.ResponseModel;
 import org.hibernate.JDBCException;
 import org.springdoc.api.ErrorMessage;
 import org.springframework.http.HttpStatus;

@@ -12,6 +12,6 @@ import javax.persistence.MappedSuperclass;
 public class BaseEntity<U> extends AuditEntity<U> {
     @Id
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id = 0L;
 }
