@@ -3,12 +3,10 @@ package com.news.news.controller;
 import com.news.news.common.annotation.ApiPrefix;
 import com.news.news.component.filter.RequestResponseLoggingFilter;
 import com.news.news.entity.Admin;
-import com.news.news.entity.User;
 import com.news.news.service.AdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

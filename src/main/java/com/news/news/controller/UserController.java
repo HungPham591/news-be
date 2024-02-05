@@ -1,6 +1,6 @@
 package com.news.news.controller;
 
-import com.news.news.entity.User;
+import com.news.news.entity.UserAccount;
 import com.news.news.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,27 +11,27 @@ import java.util.List;
 
 @Controller
 @Tag(name = "User", description = "API")
-public class UserController extends BaseController<User> {
+public class UserController extends BaseController<UserAccount> {
     @Autowired
     private UserService userService;
 
     @GetMapping(value = "/users/{id}")
-    public User get(@PathVariable(name = "id") Long id) {
+    public UserAccount get(@PathVariable(name = "id") Long id) {
         return userService.getById(id);
     }
 
     @GetMapping(value = "/users/")
-    public List<User> getList() {
+    public List<UserAccount> getList() {
         return userService.getList();
     }
 
     @PostMapping("/users")
-    public User create(User user) {
+    public UserAccount create(UserAccount user) {
         return userService.create(user);
     }
 
     @PutMapping("/users")
-    public User update(User user) {
+    public UserAccount update(UserAccount user) {
         return userService.update(user);
     }
 
