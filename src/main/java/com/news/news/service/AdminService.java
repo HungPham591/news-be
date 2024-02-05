@@ -31,4 +31,5 @@ public class AdminService extends BaseService {
     public void delete(Long id) {
         adminRepository.deleteById(id);
     }
+
 }

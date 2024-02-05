@@ -42,4 +42,5 @@ public class NewsController extends BaseController<NewsController> {
     public void analyze(){
 
     }
+
 }

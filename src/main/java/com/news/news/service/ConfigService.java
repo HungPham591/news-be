@@ -1,6 +1,6 @@
 package com.news.news.service;
 
-import com.news.news.entity.Config;
+import com.news.news.entity.ConfigApp;
 import com.news.news.repository.ConfigRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,19 +12,19 @@ public class ConfigService extends BaseService {
     @Autowired
     private ConfigRepository configRepository;
 
-    public Config getById(Long id) {
+    public ConfigApp getById(Long id) {
         return configRepository.getOne(id);
     }
 
-    public List<Config> getList() {
+    public List<ConfigApp> getList() {
         return configRepository.findAll();
     }
 
-    public Config create(Config config) {
+    public ConfigApp create(ConfigApp config) {
         return configRepository.save(config);
     }
 
-    public Config update(Config config) {
+    public ConfigApp update(ConfigApp config) {
         return configRepository.save(config);
     }
 
