@@ -1,6 +1,7 @@
 package com.news.news.controller;
 
 import com.news.news.common.annotation.ApiPrefix;
+import com.news.news.service.BaseService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @ApiPrefix
 @RequestMapping("/v1/auth/*")
 public class AuthController extends BaseController {
+
     @PostMapping("/login")
     public void login() {
 
