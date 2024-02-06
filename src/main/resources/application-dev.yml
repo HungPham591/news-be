@@ -1,0 +1,30 @@
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql-db:3306/news?createDatabaseIfNotExist=true
+    username: root
+    password: 050999
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+
+logging:
+  level:
+    com:
+      com:
+        news: INFO
+  file:
+    name: log/request.log
+
+flyway:
+  locations: classpath:/db/migrations
+  baseline-on-migrate: true
+  baseline-version: 0

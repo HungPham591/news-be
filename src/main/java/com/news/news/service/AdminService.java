@@ -5,31 +5,23 @@ import com.news.news.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service
-public class AdminService extends BaseService {
+public class AdminService extends BaseService<Admin, Long> {
     @Autowired
     private AdminRepository adminRepository;
 
-    public Admin getById(Long id) {
-        return adminRepository.getOne(id);
+    @PostConstruct
+    private void postConstruct(){
+        super.setRepository(adminRepository);
     }
+
 
     public List<Admin> getList() {
         return adminRepository.findAll();
     }
 
-    public Admin create(Admin admin) {
-        return adminRepository.save(admin);
-    }
-
-    public Admin update(Admin admin) {
-        return adminRepository.save(admin);
-    }
-
-    public void delete(Long id) {
-        adminRepository.deleteById(id);
-    }
 
 }

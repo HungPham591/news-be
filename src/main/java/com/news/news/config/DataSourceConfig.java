@@ -27,8 +27,8 @@ public class DataSourceConfig {
     private String hibernateDialect;
     @Value("${spring.jpa.show-sql}")
     private String hibernateShowSql;
-    @Value("${spring.jpa.properties.hibernate.current_session_context_class}")
-    private String currentSessionContextClass;
+//    @Value("${spring.jpa.properties.hibernate.current_session_context_class}")
+//    private String currentSessionContextClass;
     private String entityPackagePath = "com.news.news.entity";
 
     @Bean
@@ -56,7 +56,7 @@ public class DataSourceConfig {
         Properties hibernateProperties = new Properties();
         hibernateProperties.put("hibernate.dialect", hibernateDialect);
         hibernateProperties.put("hibernate.show_sql", hibernateShowSql);
-        hibernateProperties.put("current_session_context_class", currentSessionContextClass);
+//        hibernateProperties.put("current_session_context_class", currentSessionContextClass);
 
         return hibernateProperties;
     }

@@ -1,5 +1,6 @@
 package com.news.news.service;
 
+import lombok.Data;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,8 +9,11 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Data
 public abstract class BaseService<T, ID> {
     protected JpaRepository<T, ID> repository;
+
+
 
     @Transactional(readOnly = true)
     public List<T> findAll() {
@@ -40,7 +44,6 @@ public abstract class BaseService<T, ID> {
         return mapper.apply(source);
     }
 
-    // Method to map a list of objects from one type to another
     public <S, R> List<R> mapObjects(List<S> sources, Function<S, R> mapper) {
         return sources.stream()
                 .map(mapper)

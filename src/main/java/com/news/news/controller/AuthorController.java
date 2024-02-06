@@ -1,12 +1,9 @@
 package com.news.news.controller;
 
 import com.news.news.entity.Author;
-import com.news.news.service.BaseService;
+import com.news.news.service.AuthorService;
 
 
-public class AuthorController extends BaseController<Author, Author, Long> {
+public class AuthorController extends BaseRestController<Author, Author, Long> {
 
-    public AuthorController(BaseService<Author, Long> service, Class<Author> responseClass, Class<Author> entityClass) {
-        super(service, responseClass, entityClass);
-    }
 }

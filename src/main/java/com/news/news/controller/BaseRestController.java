@@ -2,39 +2,31 @@ package com.news.news.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.news.news.dto.response.ResponseModel;
+import com.news.news.entity.BaseEntity;
 import com.news.news.service.BaseService;
+import lombok.Data;
 import org.hibernate.JDBCException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springdoc.api.ErrorMessage;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
-import org.yaml.snakeyaml.events.Event;
 
 import javax.validation.Valid;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
-public class BaseController<T, E, ID> {
+@Controller
+@Data
+public abstract class BaseRestController<T, E extends BaseEntity, ID> {
     protected BaseService<E, ID> service;
     private Class<T> responseClass;
     private Class<E> entityClass;
     public ObjectMapper objectMapper;
-
-    public BaseController(BaseService<E, ID> service, Class<T> responseClass, Class<E> entityClass) {
-        this.service = service;
-        this.responseClass = responseClass;
-        this.entityClass = entityClass;
-    }
-
-    public BaseController() {
-
-    }
-
-//    @GetMapping
-//    public List<T> getAll() {
-//        return success(service.findAll());
-//    }
+    public Logger logger;
 
     @GetMapping("/{id}")
     public ResponseModel<T> getById(@PathVariable ID id) {
@@ -68,13 +60,6 @@ public class BaseController<T, E, ID> {
         }
         service.deleteById(id);
         return success(null);
-    }
-
-    @ExceptionHandler(JDBCException.class)
-    @ResponseStatus(value = HttpStatus.CONFLICT)
-    public ErrorMessage InvalidDataException(Exception ex, WebRequest request) {
-        System.out.println(ex);
-        return new ErrorMessage("Data invalid !!!");
     }
 
     public ResponseModel<T> success(E data) {
@@ -144,5 +129,12 @@ public class BaseController<T, E, ID> {
             convertedValues.add(convertedValue);
         }
         return convertedValues;
+    }
+
+    @ExceptionHandler(JDBCException.class)
+    @ResponseStatus(value = HttpStatus.CONFLICT)
+    public ErrorMessage InvalidDataException(Exception ex, WebRequest request) {
+        System.out.println(ex);
+        return new ErrorMessage("Data invalid !!!");
     }
 }

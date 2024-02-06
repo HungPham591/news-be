@@ -5,31 +5,22 @@ import com.news.news.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service
-public class UserService extends BaseService {
+public class UserService extends BaseService<UserAccount, Long> {
     @Autowired
     private UserRepository userRepository;
 
-    public UserAccount getById(Long id) {
-        return userRepository.getOne(id);
+    @PostConstruct
+    private void postConstruct() {
+        super.setRepository(userRepository);
     }
 
     public List<UserAccount> getList() {
         return userRepository.findAll();
     }
 
-    public UserAccount create(UserAccount user) {
-        return userRepository.save(user);
-    }
-
-    public UserAccount update(UserAccount user) {
-        return userRepository.save(user);
-    }
-
-    public void delete(Long id) {
-        userRepository.deleteById(id);
-    }
 
 }
