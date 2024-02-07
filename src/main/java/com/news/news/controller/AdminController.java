@@ -2,6 +2,7 @@ package com.news.news.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.news.news.common.annotation.ApiPrefix;
+import com.news.news.dto.response.AdminDto;
 import com.news.news.entity.Admin;
 import com.news.news.service.AdminService;
 import org.slf4j.LoggerFactory;
@@ -12,8 +13,8 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/admins/*")
-public class AdminController extends BaseRestController<Admin, Admin, Long> {
+@RequestMapping("/api/v1/admins/*")
+public class AdminController extends BaseRestController<AdminDto, Admin, Long> {
 
     @Autowired
     private AdminService adminService;
@@ -21,7 +22,7 @@ public class AdminController extends BaseRestController<Admin, Admin, Long> {
     @PostConstruct
     private void postConstruct(){
         super.setEntityClass(Admin.class);
-        super.setResponseClass(Admin.class);
+        super.setResponseClass(AdminDto.class);
         super.setLogger(LoggerFactory.getLogger(this.getClass()));
         super.setService(adminService);
         super.setObjectMapper(new ObjectMapper());
@@ -31,7 +32,6 @@ public class AdminController extends BaseRestController<Admin, Admin, Long> {
 
     @GetMapping(value = "/")
     public List<Admin> getList() {
-        logger.info("haha");
         return adminService.getList();
     }
 

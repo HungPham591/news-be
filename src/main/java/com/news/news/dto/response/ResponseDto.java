@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ResponseModel<T> {
+public class ResponseDto<T> {
     @Data
     public static class Status {
         private boolean success;

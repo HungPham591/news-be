@@ -1,18 +1,14 @@
 package com.news.news.entity;
 
-import lombok.Data;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Data
 @Entity
-@Table(name = "CATEGORY")
-public class Category extends BaseEntity<Category> {
+@Table(name = "FILE")
+public class File extends BaseEntity<Long> {
     @Column(name = "name")
     private String name;
-    @Column(name = "description")
-    private String description;
-
+    @Column(name = "url")
+    private String url;
 }
