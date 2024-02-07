@@ -6,8 +6,11 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+#    links:
+#      - logstash
     depends_on:
       - mysql-db
+      - logstash
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/news?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
@@ -50,6 +53,50 @@ services:
     restart: unless-stopped
     volumes:
       - ./monitoring/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+  elasticsearch:
+    build: elk/elasticsearch/
+    container_name: elasticsearch
+    depends_on:
+      - fixsysctl
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+  logstash:
+    build: elk/logstash/
+    container_name: logstash
+    command: -f /etc/logstash/conf.d/
+    volumes:
+      - ./elk/logstash/config:/etc/logstash/conf.d
+    ports:
+      - "9999:9999"
+    links:
+      - elasticsearch
+    healthcheck:
+      test: [ "CMD-SHELL", "nc -z logstash 9999" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  kibana:
+    build: elk/kibana/
+    container_name: kibana
+    volumes:
+      - ./elk/kibana/config/:/opt/kibana/config/
+    ports:
+      - "5601:5601"
+    links:
+      - elasticsearch
+  fixsysctl:
+    restart: "no"
+    privileged: true
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 25m
+    image: centos:7
+    command: "sysctl -w vm.max_map_count=262144"
 #  redis:
 #    image: redis:latest
 #    container_name: my-redis-container
